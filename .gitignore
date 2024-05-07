@@ -23,6 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
+# self-update
 .devcontainer
 values.xml
 postcss.config.js
