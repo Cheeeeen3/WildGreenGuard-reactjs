@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+.desImg {
+  @apply flex flex-col sm:flex-row border-4 border-cyan-700;
+}
+
+.shortcutImg {
+  @apply w-2/6 sm:w-3/6 flex flex-row bg-cyan-700 sm:flex-row items-start py-4 px-2;
+}
+
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
