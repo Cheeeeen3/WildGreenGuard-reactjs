@@ -7,7 +7,6 @@ interface Props {
   imageUrl: string;
   scientificName: string;
   info: string;
-  toggle: number;
 }
 
 const Description: React.FC<Props> = ({
@@ -16,10 +15,9 @@ const Description: React.FC<Props> = ({
   imageUrl,
   scientificName,
   info,
-  toggle,
-}: Props) => {
+}) => {
   return (
-    <li id={plant} className={toggle === id ? "desImg" : "hidden"}>
+    <li id={plant} className="flex flex-col sm:flex-row border-4 border-cyan-700">
       <Image
         imageUrl={imageUrl}
         plant={plant}

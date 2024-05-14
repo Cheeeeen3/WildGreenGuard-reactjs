@@ -5,12 +5,11 @@ interface Props {
   id: number;
   plant: string;
   imageUrl: string;
-  toggle: number;
 }
 
-const Shortcut: React.FC<Props> = ({ id, plant, imageUrl, toggle }: Props) => {
+const Shortcut: React.FC<Props> = ({ id, plant, imageUrl }) => {
   return (
-    <li className={toggle === id ? "shortcutImg" : "hidden"}>
+    <li className="w-2/6 sm:w-3/6 flex flex-row bg-cyan-700 sm:flex-row items-start py-4 px-2">
       <a href={`#${plant}`} className="flex items-center">
         <Image
           imageUrl={imageUrl}
