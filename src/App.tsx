@@ -4,7 +4,7 @@ import './App.css'
 import Footer from './components/Footer.tsx'
 import Home from './components/Home.tsx'
 import Info from './components/Info.tsx'
-import { NavBar } from './components/NavBar.tsx'
+import NavBar from './components/NavBar.tsx'
 import React from 'react'
 // FC type from React
 
@@ -19,7 +19,8 @@ const route = createBrowserRouter([
       },
       {
         path: '/info',
-        element: <Info />
+        element: <Info />,
+        // loader: 
       }
     ]
   }
@@ -36,7 +37,7 @@ function Layout() {
   return (
     <>
       <NavBar />
-      <Outlet />
+      <main><Outlet /></main>
       <Footer />
     </>
   )

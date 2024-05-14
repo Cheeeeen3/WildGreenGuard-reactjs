@@ -1,5 +1,7 @@
 import React from 'react'
 
+
+
 const Info: React.FC = () => {
   return (
     <div>Info</div>
@@ -7,3 +9,4 @@ const Info: React.FC = () => {
 }
 
 export default Info
+
