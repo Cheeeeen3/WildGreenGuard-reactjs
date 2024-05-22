@@ -1,23 +1,21 @@
 import React from "react";
 import Image from "./Image.tsx";
 
-interface Props {
-  id: number;
+interface props {
   plant: string;
   imageUrl: string;
   scientificName: string;
   info: string;
 }
 
-const Description: React.FC<Props> = ({
-  id,
+const Description: React.FC<props> = ({
   plant,
   imageUrl,
   scientificName,
   info,
 }) => {
   return (
-    <li id={plant} className="flex flex-col sm:flex-row border-4 border-cyan-700">
+    <li id={plant} className="flex flex-col sm:flex-row border-4 border-cyan-700" key={`${plant}-descroption`}>
       <Image
         imageUrl={imageUrl}
         plant={plant}

@@ -1,13 +1,38 @@
 import React from "react";
 import { useState } from "react";
+import { useLoaderData } from "react-router-dom";
+import getPlantData from "./PlantData.tsx";
+
 import Tabs from "./Tabs.tsx";
 import Shortcut from "./Shortcut.tsx";
 import Description from "./Description.tsx";
 
-const Info: React.FC<{ id: number }> = ({ id }) => {
+interface plantData {
+    name: string,
+    scientificName: string,
+    imageUrl: string,
+    isInvasive: boolean,
+    info: string
+}
+
+export async function loader() {
+  const PlantDatas = await getPlantData();
+  console.log(PlantDatas);
+  return PlantDatas;
+}
+
+const Info: React.FC = () => {
   const [toggle, setToggle] = useState(1);
+  const PlantData = useLoaderData() as plantData[];
+
+  const InvasiveDatas = PlantData.filter(
+    (data) => data.isInvasive === true
+  );
+  const NativeDatas = PlantData.filter(
+    (data) => data.isInvasive === false
+  );
   const shortcutStyle =
-    "list-none mx-auto my-12 flex flex-col justify-items-center sm:flex-row sm:justify-items-center gap-4";
+    "list-none mx-auto sm:p-5 my-12 flex flex-col sm:flex-row sm:flex-wrap items-center sm:items-start gap-4";
   const desStyle = "w-4/5 flex flex-col gap-6 mx-auto";
 
   function handleToggle(id: number) {
@@ -15,63 +40,44 @@ const Info: React.FC<{ id: number }> = ({ id }) => {
   }
 
   return (
-    <>
+    <>     
       <Tabs display={toggle} handler={handleToggle} />
       <section>
         <ul className={toggle === 1 ? shortcutStyle : "hidden"}>
-          <Shortcut
-            id={1}
-            plant={"Flossflower"}
-            imageUrl={
-              "https://storage.googleapis.com/green01/plant/Flossflower.jpg"
-            }
-          />
-          <Shortcut
-            id={3}
-            plant={"Pilose Beggarticks"}
-            imageUrl={
-              "https://storage.googleapis.com/green01/plant/Pilose%20Beggarticks.jpg"
-            }
-          />
+          {InvasiveDatas.map((InvasiveData) => (
+            <Shortcut
+              plant={InvasiveData.name}
+              imageUrl={InvasiveData.imageUrl}
+            />
+          ))}
         </ul>
         <ul className={toggle === 2 ? shortcutStyle : "hidden"}>
-          <Shortcut
-            id={2}
-            plant={"Spiny Pigweed"}
-            imageUrl={
-              "https://storage.googleapis.com/green01/plant/Spiny%20Pigweed.jpg"
-            }
-          />
-          <li>part2</li>
+          {NativeDatas.map((NativeData) => (
+            <Shortcut plant={NativeData.name} imageUrl={NativeData.imageUrl} />
+          ))}
         </ul>
       </section>
       <hr className="border-gray-200 mb-4"></hr>
       <section>
         <ul className={toggle === 1 ? desStyle : "hidden"}>
-          <Description
-            id={1}
-            plant={"Flossflower"}
-            imageUrl={
-              "https://storage.googleapis.com/green01/plant/Flossflower.jpg"
-            }
-            scientificName={"Ageratum houstonianum"}
-            info={
-              "It is an annual plant with a height ranging from 30 to 100 cm. The leaves are ovate to triangular-ovate, with a length of 2 to 7 cm, having a blunt apex and a shallow heart-shaped base. The edges of the leaves are serrated. It is distributed in regions with an elevation of up to 1,300 m."
-            }
-          />
+          {InvasiveDatas.map((InvasiveData) => (
+            <Description
+              plant={InvasiveData.name}
+              imageUrl={InvasiveData.imageUrl}
+              scientificName={InvasiveData.scientificName}
+              info={InvasiveData.info}
+            />
+          ))}
         </ul>
         <ul className={toggle === 2 ? desStyle : "hidden"}>
-          <Description
-            id={2}
-            plant={"Spiny Pigweed"}
-            imageUrl={
-              "https://storage.googleapis.com/green01/plant/Spiny%20Pigweed.jpg"
-            }
-            scientificName={"Amaranthus_spinosus"}
-            info={
-              "The plant reaches a height of approximately 30 to 100 cm. The flower color is green. It is distributed throughout Taiwan, particularly commonly found around cultivated fields."
-            }
-          />
+          {NativeDatas.map((NativeData) => (
+            <Description
+              plant={NativeData.name}
+              imageUrl={NativeData.imageUrl}
+              scientificName={NativeData.scientificName}
+              info={NativeData.info}
+            />
+          ))}
         </ul>
       </section>
     </>

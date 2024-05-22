@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import Tab from './Tab.tsx'
 
 const tabNames = ['Invasive Plants', 'Native Plants']

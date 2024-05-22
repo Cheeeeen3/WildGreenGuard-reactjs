@@ -2,14 +2,16 @@ import React from "react";
 import Image from "./Image.tsx";
 
 interface Props {
-  id: number;
   plant: string;
   imageUrl: string;
 }
 
-const Shortcut: React.FC<Props> = ({ id, plant, imageUrl }) => {
+const Shortcut: React.FC<Props> = ({ plant, imageUrl }) => {
   return (
-    <li className="w-2/6 sm:w-3/6 flex flex-row bg-cyan-700 sm:flex-row items-start py-4 px-2">
+    <li
+      className="w-1/4 mx-10 bg-cyan-700 items-start py-4 px-2"
+      key={`${plant}-shortcut`}
+    >
       <a href={`#${plant}`} className="flex items-center">
         <Image
           imageUrl={imageUrl}
