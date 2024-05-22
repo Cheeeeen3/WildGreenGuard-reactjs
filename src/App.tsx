@@ -1,4 +1,5 @@
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { loader as InfoLoader } from "./components/Info.tsx"
 
 import './App.css'
 import Footer from './components/Footer.tsx'
@@ -6,6 +7,7 @@ import Home from './components/Home.tsx'
 import Info from './components/Info.tsx'
 import { NavBar } from './components/NavBar.tsx'
 import React from 'react'
+import Login from './components/Login.tsx'
 // FC type from React
 
 const route = createBrowserRouter([
@@ -19,7 +21,12 @@ const route = createBrowserRouter([
       },
       {
         path: '/info',
-        element: <Info />
+        element: <Info />,
+        loader: InfoLoader
+      },
+      {
+        path: '/Login',
+        element: <Login />,
       }
     ]
   }
