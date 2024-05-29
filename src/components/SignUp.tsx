@@ -3,16 +3,14 @@ import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 
-import SignUp from "./SignUp.tsx";
 import Validation, { props as props } from "./Validation.tsx";
 import LogoWithTitle from "./LogoWithTitle.tsx";
 import InputField from "./InputField.tsx";
 import ThematicBreak from "./ThematicBreak.tsx";
 import Button from "./Button.tsx";
 import ConfirmAccount from "./ConfirmAccount.tsx"
-import getUserInfo from "./UserInfo.tsx";
 
-const Login: React.FC = () => {
+const SignUp: React.FC = () => {
   const userRef = useRef<HTMLInputElement>(null);
 
   const [values, setValues] = useState({
@@ -33,14 +31,6 @@ const Login: React.FC = () => {
     setErrors(Validation(values));
     // setIsSubmit(true)
   };
-
-  // const loader = async () => {
-  //   const user = await getUserInfo();
-  //   if (!user) {
-  //     return redirect("/SignUp");
-  //   }
-  //   return null;
-  // };
 
   useEffect(() => {
     if (userRef.current) {
@@ -68,7 +58,7 @@ const Login: React.FC = () => {
       ) : (
         <>
           <section className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-            <LogoWithTitle isLogin={true} />
+            <LogoWithTitle isLogin={false} />
           </section>
           <section className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form
@@ -97,18 +87,19 @@ const Login: React.FC = () => {
                 userRef={userRef}
                 handleChange={handleChange}
               />
+              {/* <captcha><button></button></captcha> */}
               <div className="mt-4 flex flex-col gap-y-4">
                 <Button type={"submit"} isLink={false}>
-                  Log in
+                  Sign up
                 </Button>
               </div>
             </form>
-            <ThematicBreak isLogin={true} />
+            <ThematicBreak isLogin={false} />
             <Button type={"button"} isLink={false}>
               <FaGoogle className="mr-2" />
               Google
             </Button>
-            <ConfirmAccount isLogin={true}/>
+            <ConfirmAccount isLogin={false}/>
           </section>
         </>
       )}
@@ -116,4 +107,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default SignUp;
