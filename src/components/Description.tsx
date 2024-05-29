@@ -15,7 +15,7 @@ const Description: React.FC<props> = ({
   info,
 }) => {
   return (
-    <li id={plant} className="flex flex-col sm:flex-row border-4 border-cyan-700" key={`${plant}-descroption`}>
+    <li id={plant} className="flex flex-col sm:flex-row border-4 border-cyan-700">
       <Image
         imageUrl={imageUrl}
         plant={plant}

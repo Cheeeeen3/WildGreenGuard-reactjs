@@ -17,7 +17,6 @@ interface plantData {
 
 export async function loader() {
   const PlantDatas = await getPlantData();
-  console.log(PlantDatas);
   return PlantDatas;
 }
 
@@ -48,12 +47,13 @@ const Info: React.FC = () => {
             <Shortcut
               plant={InvasiveData.name}
               imageUrl={InvasiveData.imageUrl}
+              key={`${InvasiveData.name}-shortcut`}
             />
           ))}
         </ul>
         <ul className={toggle === 2 ? shortcutStyle : "hidden"}>
           {NativeDatas.map((NativeData) => (
-            <Shortcut plant={NativeData.name} imageUrl={NativeData.imageUrl} />
+            <Shortcut plant={NativeData.name} imageUrl={NativeData.imageUrl} key={`${NativeData.name}-shortcut`}/>
           ))}
         </ul>
       </section>
@@ -66,6 +66,7 @@ const Info: React.FC = () => {
               imageUrl={InvasiveData.imageUrl}
               scientificName={InvasiveData.scientificName}
               info={InvasiveData.info}
+              key={`${InvasiveData.name}-descroption`}
             />
           ))}
         </ul>
@@ -76,6 +77,7 @@ const Info: React.FC = () => {
               imageUrl={NativeData.imageUrl}
               scientificName={NativeData.scientificName}
               info={NativeData.info}
+              key={`${NativeData.name}-descroption`}
             />
           ))}
         </ul>

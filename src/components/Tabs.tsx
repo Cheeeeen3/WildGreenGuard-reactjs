@@ -23,8 +23,8 @@ const Tabs: React.FC<props> = ({ display, handler }) => {
           <ul className="flex justify-center flex-wrap -mb-px">
             {tabNames.map(tabname => 
               tabNames.indexOf(tabname) + 1 === display ?
-              <Tab tabName={tabname} style={ active } handler={ ()=>handler(tabNames.indexOf(tabname) + 1) } /> :
-              <Tab tabName={tabname} style={ inactive } handler={ ()=>handler(tabNames.indexOf(tabname) + 1) } />
+              <Tab tabName={tabname} style={ active } handler={ ()=>handler(tabNames.indexOf(tabname) + 1) } key={tabname}/> :
+              <Tab tabName={tabname} style={ inactive } handler={ ()=>handler(tabNames.indexOf(tabname) + 1) } key={tabname}/>
             )}
           </ul>
         </div>
