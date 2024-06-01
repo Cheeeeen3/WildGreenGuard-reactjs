@@ -25,6 +25,8 @@ export default {
         'close-menu': 'close menu 75ms ease-in',
       }
     },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-aria-attributes')
+  ],
 }
 

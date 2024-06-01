@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import LogoIcon from "./Icon.tsx";
+
 
 const NavBar: React.FC = () => {
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
 
-    const handleClick = ()=>{
-        let menuBtn = document.getElementById('menu-btn')
+    const handleClick = () => {
+        let menuBtn = document.getElementById('menu-btn');
         menuBtn?.setAttribute('aria-expanded', (menuBtn.ariaExpanded !== 'true').toString());
         setIsOpen(!isOpen);
     };
@@ -31,18 +33,26 @@ const NavBar: React.FC = () => {
                             </button>
                         </div>
                         <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                            <div className="flex flex-shrink-0 items-center">
-                                <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
-                            </div>
+                            <Link to="/">
+                                <div className="flex flex-shrink-0 items-center">
+                                    {/* <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" /> */}
+
+                                    <img
+                                        className="icon"
+                                        src="https://taiwan.wwg.solutions/static/plants/images/earth_nature_futaba.png"
+                                        alt="icon"
+                                        width="34"
+                                        height="34"
+                                    />
+                                    <strong className="text-gray-300 inline-block align-middle py-1.5">WildGreenGuard</strong>
+                                </div>
+                            </Link>
                             <div className="hidden sm:ml-6 sm:block">
-                                <div className="flex space-x-4">
+                                <div className="flex space-x-4 ml-4">
                                     {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
                                     <Link to="/info" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Info</Link>
-                                    <Link to="/info" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Info</Link>
+                                    <CustomLink to={"/info"} navName={"Info"} aria-current="page" />
                                     <a href="#" className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Dashboard</a>
-                                    <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Team</a>
-                                    <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Projects</a>
-                                    <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Calendar</a>
                                 </div>
                             </div>
                         </div>
@@ -92,4 +102,16 @@ const NavBar: React.FC = () => {
     );
 }
 
-export default NavBar;
+type props = { to: string, navName: string }
+
+const CustomLink: React.FC<props> = ({ to, navName, ...props }) => {
+
+    return (
+        <Link to={to} className="
+        text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium aria-current-page:text-white aria-current-page:bg-gray-900 aria-current-page:hover:bg-gray-900 aria-current-page:block" {...props}>
+            {navName}
+        </Link>
+    )
+};
+
+export default NavBar
