@@ -12,21 +12,20 @@ export default {
       },
       keyframes: {
         'open-menu': {
-          '0%': {'transform': 'opacity: 0 scale(.95)'}},
-          '100%': {'transform': 'opacity: 1 scale(1)'}
+          '0%': { opacity: 0, transform: 'scale(1)' },
+          '100%': { opacity: 1, transform: 'scale(1)' }
         },
         'close-menu': {
-          '0%': {'transform': 'opacity: 1 scale(1)'},
-          '100%': {'transform': 'opacity: 0 scale(.95)'}
+          '0%': { opacity: 1, transform: 'scale(1)' },
+          '100%': { opacity: 0, transform: 'scale(.95)' }
         },
       },
       animation: {
-        'open-menu': 'open menu 100ms ease-out',
-        'close-menu': 'close menu 75ms ease-in',
+        'open-menu': 'open-menu 200ms ease-out',
+        'close-menu': 'close-menu 100ms ease-in',
       }
     },
-  plugins: [
-    require('tailwindcss-aria-attributes')
-  ],
+  },
+  plugins: [],
 }
 
