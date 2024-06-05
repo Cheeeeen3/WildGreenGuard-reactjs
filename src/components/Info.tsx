@@ -1,11 +1,13 @@
 import React from "react";
 import { useState } from "react";
+
 import Tabs from "./Tabs.tsx";
 import Shortcut from "./Shortcut.tsx";
 import Description from "./Description.tsx";
 
-const Info: React.FC<{ id: number }> = ({ id }) => {
+const Info: React.FC = () => {
   const [toggle, setToggle] = useState(1);
+
   const shortcutStyle =
     "list-none mx-auto my-12 flex flex-col justify-items-center sm:flex-row sm:justify-items-center gap-4";
   const desStyle = "w-4/5 flex flex-col gap-6 mx-auto";
@@ -14,12 +16,6 @@ const Info: React.FC<{ id: number }> = ({ id }) => {
     setToggle(id);
   }
 
-<<<<<<< HEAD
-
-
-const Info: React.FC = () => {
-=======
->>>>>>> 3f3d67fdc9dca8032c02bdab7617bd58266e2a4e
   return (
     <>
       <Tabs display={toggle} handler={handleToggle} />
@@ -55,7 +51,6 @@ const Info: React.FC = () => {
       <section>
         <ul className={toggle === 1 ? desStyle : "hidden"}>
           <Description
-            id={1}
             plant={"Flossflower"}
             imageUrl={
               "https://storage.googleapis.com/green01/plant/Flossflower.jpg"
@@ -68,7 +63,6 @@ const Info: React.FC = () => {
         </ul>
         <ul className={toggle === 2 ? desStyle : "hidden"}>
           <Description
-            id={2}
             plant={"Spiny Pigweed"}
             imageUrl={
               "https://storage.googleapis.com/green01/plant/Spiny%20Pigweed.jpg"
@@ -84,9 +78,4 @@ const Info: React.FC = () => {
   );
 };
 
-<<<<<<< HEAD
 export default Info
-
-=======
-export default Info;
->>>>>>> 3f3d67fdc9dca8032c02bdab7617bd58266e2a4e

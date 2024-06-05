@@ -1,16 +1,14 @@
 import React from "react";
 import Image from "./Image.tsx";
 
-interface Props {
-  id: number;
+interface props {
   plant: string;
   imageUrl: string;
   scientificName: string;
   info: string;
 }
 
-const Description: React.FC<Props> = ({
-  id,
+const Description: React.FC<props> = ({
   plant,
   imageUrl,
   scientificName,
