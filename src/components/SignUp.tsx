@@ -11,19 +11,11 @@ import Button from "./Button.tsx";
 import ConfirmAccount from "./ConfirmAccount.tsx"
 
 const SignUp: React.FC = () => {
-  const userRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
-  const [values, setValues] = useState({
-    email: "",
-    password: "",
-  });
   const [errors, setErrors]: [props, Function] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setValues({ ...values, [e.target.name]: e.target.value });
-    // console.log(values);
-  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
