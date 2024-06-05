@@ -26,5 +26,6 @@ dist-ssr
 # self-update
 .devcontainer
 values.xml
-postcss.config.js
-.gitignore
+js.md
+
+Icon.tsx

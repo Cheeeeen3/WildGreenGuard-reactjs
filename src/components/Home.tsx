@@ -23,7 +23,7 @@ const Home: React.FC = () => {
                     />
                 </div>
             </div>
-            <div className="text-center px-16 mt-5 bg-orange-400 text-xl sm:text-3xl block">
+            <div className="text-center px-16 mt-5 [background-color:#e6ebe0] text-xl sm:text-3xl block">
                 It is a website designed to identify invasive plant species in Taiwan, featuring a Line Bot platform.
                 It supports Chinese, English, and Japanese and provides a user-friendly experience. The “Plant Database” lists plant species that can be identified by WildGreenGuard. For any inquiries, please refer to the “FAQ” section.
             </div>

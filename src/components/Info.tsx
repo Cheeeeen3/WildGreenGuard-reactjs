@@ -86,4 +86,4 @@ const Info: React.FC = () => {
   );
 };
 
-export default Info;
+export default Info

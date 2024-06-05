@@ -7,7 +7,7 @@ import "./App.css";
 import Footer from "./components/Footer.tsx";
 import Home from "./components/Home.tsx";
 import Info from "./components/Info.tsx";
-import { NavBar } from "./components/NavBar.tsx";
+import NavBar from "./components/NavBar.tsx";
 import React from "react";
 import Login from "./components/Login.tsx";
 import SignUp from "./components/SignUp.tsx";
@@ -52,7 +52,7 @@ function Layout() {
   return (
     <>
       <NavBar />
-      <Outlet />
+      <main><Outlet /></main>
       <Footer />
     </>
   );
