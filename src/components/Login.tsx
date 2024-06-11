@@ -1,8 +1,8 @@
 import React from "react";
 import { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import SignUp from "./SignUp.tsx";
 import Validation, { props as props } from "./Validation.tsx";
@@ -13,9 +13,10 @@ import Button from "./Button.tsx";
 import ConfirmAccount from "./ConfirmAccount.tsx";
 import getUserInfo from "./UserInfo.tsx";
 import { useAppDispatch } from "./hook.tsx";
-import { loginUser, UserState } from "./userSlice.tsx";
+import { loginUser } from "./userSlice.tsx";
 
 const Login: React.FC = () => {
+  const { t } = useTranslation();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
@@ -94,7 +95,7 @@ const Login: React.FC = () => {
           />
           <div className="mt-4 flex flex-col gap-y-4">
             <Button type={"submit"} isLink={false}>
-              Log in
+              {t("login")}
             </Button>
           </div>
         </form>
