@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "./Image.tsx";
+import { useTranslation } from "react-i18next";
 
 interface props {
   plant: string;
@@ -14,6 +15,7 @@ const Description: React.FC<props> = ({
   scientificName,
   info,
 }) => {
+  const { t } = useTranslation();
   return (
     <li id={plant} className="flex flex-col sm:flex-row border-4 border-cyan-700">
       <Image
@@ -23,10 +25,10 @@ const Description: React.FC<props> = ({
       />
       <article className="ml-4">
         <h3 className="font-semibold hover:text-orange-400 hover:opacity-80">
-          {plant}
+          {t(plant)}
         </h3>
         <h6 className="italic mb-2">{scientificName}</h6>
-        <p>{info}</p>
+        <p>{t(`${plant}des`)}</p>
       </article>
     </li>
   );

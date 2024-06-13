@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import LngSwitch from "./LngSwitch.tsx"
+import LngSwitch from "./LngSwitch.tsx";
+import { useTranslation } from "react-i18next";
 
 
 const NavBar: React.FC = () => {
@@ -88,10 +89,11 @@ interface panelProps {
 }
 
 const NavLinkPanel: React.FC<panelProps> = ({ page, handlePageClick }) => {
+    const { t } = useTranslation();
     const navLinks = [
-        { to: '/', navName: 'Info' },
-        { to: '/info', navName: 'Team' },
-        { to: '/info', navName: 'Dashboard' },
+        { to: '/', navName: t("data") },
+        { to: '/info', navName:t("team") },
+        { to: '/info', navName: t("idplant") },
     ]
 
     return (
