@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from "react-simple-captcha";
+import { useTranslation } from "react-i18next";
 
 const Captcha: React.FC = () => {
     const [msg, setMsg] = useState('');
-    const [msgColor, setMsgcolor] = useState('')
+    const [msgColor, setMsgcolor] = useState('');
+    const { t } = useTranslation();
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -15,13 +17,13 @@ const Captcha: React.FC = () => {
 
         if (validateCaptcha(value) !== true) {
             setMsgcolor('text-red-500');
-            setMsg("Wrong Captcha.");
+            setMsg(t("wrong captcha"));
             loadCaptchaEnginge(6);
             (captchaInput as HTMLInputElement).value = '';
         }
         else {
             setMsgcolor('text-lime-700');
-            setMsg("Correct Captcha.");
+            setMsg(t("correct captcha"));
         };
     }
 
@@ -30,10 +32,10 @@ const Captcha: React.FC = () => {
             <div className="w-96">
                 <form>
                     <div className="flex flex-row space-x-4">
-                        <LoadCanvasTemplate reloadText="Reset" reloadColor="indigo" className="bg-red-500" />
+                        <LoadCanvasTemplate reloadText={t("reset")} reloadColor="indigo" className="bg-red-500" />
                         <div className="flex flex-col space-y-2">
-                            <input type="text" id="captcha-value" name="captcha-value" required />
-                            <button type="button" className="rounded-md bg-indigo-300 text-base font-medium text-black hover:ring-1 hover:ring-indigo-500 hover:ring-offset-1" onClick={handleClick}>verify</button>
+                            <input type="text" id="captcha-value" name="captcha-value" className="rounded-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600" required />
+                            <button type="button" className="rounded-md bg-indigo-300 text-base font-medium text-black hover:ring-1 hover:ring-indigo-500 hover:ring-offset-1" onClick={handleClick}>{t("verify")}</button>
                         </div>
                     </div>
                 </form>
