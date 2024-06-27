@@ -1,3 +1,5 @@
+import daisyui from "daisyui"
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -23,9 +25,14 @@ export default {
       animation: {
         'open-menu': 'open-menu 200ms ease-out',
         'close-menu': 'close-menu 100ms ease-in',
+      },
+      fontFamily: {
+        'custom-font': ['CustomFont', 'sans-serif']
       }
     },
   },
-  plugins: [],
+  plugins: [
+    daisyui,
+  ],
 }
 
