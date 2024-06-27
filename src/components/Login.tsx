@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import SignUp from "./SignUp.tsx";
-import Validation, { props as props } from "./Validation.tsx";
+import Validation, { props as props } from "./Validation.ts";
 import LogoWithTitle from "./LogoWithTitle.tsx";
 import InputField from "./InputField.tsx";
 import ThematicBreak from "./ThematicBreak.tsx";
@@ -28,7 +28,6 @@ const Login: React.FC = () => {
     const email = emailRef.current?.value || "";
     const password = passwordRef.current?.value || "";
     setErrors(Validation({ email, password }));
-
     handleLogin();
   };
 
@@ -67,45 +66,51 @@ const Login: React.FC = () => {
 
   return (
     <>
-      <section className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-        <LogoWithTitle isLogin={true} />
-      </section>
-      <section className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form
-          className="space-y-6"
-          action="#"
-          method="POST"
-          onSubmit={handleSubmit}
-        >
-          <InputField
-            label={"email"}
-            id={"email"}
-            name={"email"}
-            type={"text"}
-            error={errors.email!}
-            userRef={emailRef}
-          />
-          <InputField
-            label={"password"}
-            id={"password"}
-            name={"password"}
-            type={"password"}
-            error={errors.password!}
-            userRef={passwordRef}
-          />
+      <div className="flex min-h-screen flex-col items-center justify-center px-6 py-12 lg:px-8">
+        <section className="flex items-center justify-center">
+          <LogoWithTitle isLogin={true} />
+        </section>
+        <section className="mt-4 sm:mx-auto sm:w-full sm:max-w-sm">
+          <form
+            className="space-y-6"
+            action="#"
+            method="POST"
+            onSubmit={handleSubmit}
+          >
+            <InputField
+              label={"email"}
+              id={"email"}
+              name={"email"}
+              type={"text"}
+              error={errors.email!}
+              ref={emailRef}
+            />
+            <InputField
+              label={"password"}
+              id={"password"}
+              name={"password"}
+              type={"password"}
+              error={errors.password!}
+              ref={passwordRef}
+            />
+            <div className="mt-8 flex flex-col gap-y-4">
+              <Button type={"submit"} isLink={false}>
+                {t("login")}
+              </Button>
+            </div>
+          </form>
+          <div className="mt-4 gap-y-4">
+            <ThematicBreak isLogin={true} />
+          </div>
           <div className="mt-4 flex flex-col gap-y-4">
-            <Button type={"submit"} isLink={false}>
-              {t("login")}
+            <Button type={"button"} isLink={false}>
+              <FaGoogle className="mr-2" />
+              Google
             </Button>
           </div>
-        </form>
-        <ThematicBreak isLogin={true} />
-        <Button type={"button"} isLink={false}>
-          <FaGoogle className="mr-2" />
-          Google
-        </Button>
-        <ConfirmAccount isLogin={true} />
-      </section>
+          <ConfirmAccount isLogin={true} />
+        </section>
+      </div>
     </>
   );
 };

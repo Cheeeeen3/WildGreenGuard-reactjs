@@ -28,7 +28,7 @@ const Home: React.FC = () => {
           />
         </div>
       </div>
-      <div className="text-center px-16 mt-5 [background-color:#e6ebe0] text-xl sm:text-3xl block">
+      <div className="text-center font-custom-font px-16 my-3 text-emerald-900 text-xl sm:text-2xl block">
         {t("webintro")}
       </div>
     </>

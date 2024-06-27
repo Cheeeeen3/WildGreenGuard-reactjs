@@ -7,12 +7,11 @@ interface buttonProps {
 }
 
 const Button: React.FC<buttonProps> = ({ type, isLink, children }) => {
-  const basicStyle =
-    "flex justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600";
-  const primaryButtonStyle = `w-11/12 mx-auto sm:w-full ${basicStyle}`;
-  const googleButtonStyle =
-    "flex w-full justify-center rounded-md bg-white px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-md items-center hover:border-2 hover:border-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600";
-  const linkButtonStyle = `w-auto  ${basicStyle}`;
+  const primaryButtonStyle =
+    "btn w-11/12 btn-active bg-emerald-800 border-emerald-800 text-white hover:bg-emerald-600 max-w-xs ml-2 sm:ml-10";
+  const googleButtonStyle = "btn w-11/12 btn-active bg-white max-w-xs ml-2 sm:ml-10";
+  const linkButtonStyle =
+    "btn btn-active btn-link text-emerald-800 hover:text-emerald-600 dark:text-emerald-500 dark:hover:text-emerald-300";
 
   return (
     <button
@@ -21,8 +20,8 @@ const Button: React.FC<buttonProps> = ({ type, isLink, children }) => {
         type === "button"
           ? googleButtonStyle
           : isLink
-          ? linkButtonStyle
-          : primaryButtonStyle
+            ? linkButtonStyle
+            : primaryButtonStyle
       }
     >
       {children}

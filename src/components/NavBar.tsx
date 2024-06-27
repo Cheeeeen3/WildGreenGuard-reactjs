@@ -10,7 +10,7 @@ const NavBar: React.FC = () => {
 
     const handlePageClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         const target = e.target as HTMLAnchorElement;
-        setPage(target.innerText);
+        setPage(target.pathname);
     };
     const handleMenuClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -21,12 +21,12 @@ const NavBar: React.FC = () => {
 
     return (
         <header>
-            <nav className="bg-gray-800">
+            <nav className="bg-emerald-950">
                 <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                     <div className="relative flex h-16 items-center justify-between">
                         <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                             {/* <!-- Mobile menu button--> */}
-                            <button type="button" id='menu-btn' className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" onClick={handleMenuClick} aria-controls="mobile-menu" aria-expanded="false">
+                            <button type="button" id='menu-btn' className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-emerald-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" onClick={handleMenuClick} aria-controls="mobile-menu" aria-expanded="false">
                                 <span className="absolute -inset-0.5"></span>
                                 <span className="sr-only">Open main menu</span>
                                 {/* Icon when menu is closed. Menu open: "hidden", Menu closed: "block" */}
@@ -89,11 +89,11 @@ interface panelProps {
 }
 
 const NavLinkPanel: React.FC<panelProps> = ({ page, handlePageClick }) => {
-    const { t } = useTranslation();
+    
     const navLinks = [
-        { to: '/', navName: t("data") },
-        { to: '/info', navName:t("team") },
-        { to: '/info', navName: t("idplant") },
+        { to: '/', navName: "data" },
+        { to: '/info', navName:"team" },
+        { to: '/chatroom', navName: "idplant" },
     ]
 
     return (
@@ -104,7 +104,7 @@ const NavLinkPanel: React.FC<panelProps> = ({ page, handlePageClick }) => {
                     to={link.to}
                     navName={link.navName}
                     onClick={handlePageClick}
-                    aria-current={page === link.navName ? 'page' : ''}
+                    aria-current={page === link.to ? 'page' : ''}
                 />
             ))}
         </>
@@ -118,10 +118,11 @@ interface pageProps {
 }
 
 const PageLink: React.FC<pageProps> = ({ to, navName, ...props }) => {
+    const { t } = useTranslation();
     return (
         <Link to={to} className="
-        text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium aria-[current='page']:text-white aria-[current='page']:bg-gray-900 aria-[current='page']:hover:bg-gray-900 aria-[current='page']:block" {...props}>
-            {navName}
+        text-gray-300 hover:bg-emerald-900 font-custom-font hover:text-white rounded-md px-3 py-2 text-sm font-medium aria-[current='page']:text-white aria-[current='page']:bg-emerald-800 aria-[current='page']:hover:bg-emerald-900 aria-[current='page']:block" {...props}>
+            { t(navName) }
         </Link>
     )
 };

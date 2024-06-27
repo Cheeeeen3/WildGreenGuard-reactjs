@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import i18next from "i18next";
 
 import { languages } from "../i18n.tsx";
 import { GrLanguage } from "react-icons/gr";
 
-
 const LngSwitch: React.FC = () => {
   const [animation, setAnimation] = useState("animate-close-menu hidden");
+  const detailsRef = useRef<HTMLDetailsElement>(null);
 
   const handleClick = () => {
     let newAnimation =
@@ -17,14 +17,14 @@ const LngSwitch: React.FC = () => {
   };
 
   const handleLanguageClick = (
-    e: React.MouseEvent<HTMLLIElement>,
-    lang: string
+    e: React.MouseEvent<HTMLDivElement>,
+    lang: string,
   ) => {
     e.preventDefault();
     let LngBtn = document.getElementById("lng-btn");
     LngBtn?.setAttribute(
       "aria-expanded",
-      (LngBtn.ariaExpanded !== "true").toString()
+      (LngBtn.ariaExpanded !== "true").toString(),
     );
 
     let LngSwitch = document.documentElement;
@@ -32,46 +32,42 @@ const LngSwitch: React.FC = () => {
     i18next.changeLanguage(lang);
     // console.log(lang, i18next.resolvedLanguage, i18next.language);
     setAnimation("animate-close-menu hidden");
+    if (detailsRef.current) {
+      detailsRef.current.open = false;
+    }
   };
 
   return (
-    <div className="relative ml-3">
-      <div onClick={handleClick}>
-        <button
-          type="button"
-          id="lng-btn"
-          className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 aria-expanded={`${animation === 'animate-open-menu'? 'true':'false'}`} aria-haspopup='true'"
-        >
-          <span className="absolute -inset-1.5"></span>
-          <span className="sr-only">Open user menu</span>
-          <GrLanguage className="w-6 h-6" />
-        </button>
-      </div>
-
-      <ul
-        className={`absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${animation}`}
-        role="menu"
-        aria-orientation="vertical"
-        aria-labelledby="user-menu-button"
-        tabIndex={-1}
+    <details ref={detailsRef} className="dropdown dropdown-end">
+      <summary
+        className="btn w-14 border-emerald-950 bg-emerald-950 hover:bg-emerald-900"
+        onClick={handleClick}
       >
-        {/* <!-- Active: "bg-gray-100", Not Active: "" --> */}
+        <GrLanguage size={42} className="text-gray-300" />
+      </summary>
+      <div
+        className={`menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow ${animation}`}
+      >
         {languages.map((language) => (
-          <li key={language.code} onClick={(e) => handleLanguageClick(e, language.code)} className="cursor-pointer flex flex-row mt-2">
+          <div
+            key={language.code}
+            onClick={(e) => handleLanguageClick(e, language.code)}
+            className="mt-2 flex cursor-pointer flex-row"
+          >
             {language.country_code}
             <a
               href="#"
-              className="block px-4 py-2 ml-2 text-sm text-gray-700"
+              className="ml-2 block px-4 py-2 text-sm text-gray-700 dark:text-gray-300"
               role="menuitem"
               tabIndex={-1}
               id={language.code}
             >
               {language.name}
             </a>
-          </li>
+          </div>
         ))}
-      </ul>
-    </div>
+      </div>
+    </details>
   );
 };
 

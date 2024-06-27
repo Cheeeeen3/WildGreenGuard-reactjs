@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
-import Validation, { props as props } from "./Validation.tsx";
+import Validation, { props as props } from "./Validation.ts";
 import LogoWithTitle from "./LogoWithTitle.tsx";
 import InputField from "./InputField.tsx";
 import ThematicBreak from "./ThematicBreak.tsx";
@@ -34,46 +34,52 @@ const SignUp: React.FC = () => {
 
   return (
     <>
-      <section className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-        <LogoWithTitle isLogin={false} />
-      </section>
-      <section className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form
-          className="space-y-6"
-          action="#"
-          method="POST"
-          onSubmit={handleSubmit}
-        >
-          <InputField
-            label={"email"}
-            id={"email"}
-            name={"email"}
-            type={"text"}
-            error={errors.email!}
-            userRef={emailRef}
-          />
-          <InputField
-            label={"password"}
-            id={"password"}
-            name={"password"}
-            type={"password"}
-            error={errors.password!}
-            userRef={passwordRef}
-          />
-          <Captcha></Captcha>
+      <div className="flex min-h-screen flex-col items-center justify-center px-6 py-12 lg:px-8">
+        <section className="flex items-center justify-center">
+          <LogoWithTitle isLogin={false} />
+        </section>
+        <section className="mt-4 sm:mx-auto sm:w-full sm:max-w-sm">
+          <form
+            className="space-y-6"
+            action="#"
+            method="POST"
+            onSubmit={handleSubmit}
+          >
+            <InputField
+              label={"email"}
+              id={"email"}
+              name={"email"}
+              type={"text"}
+              error={errors.email!}
+              userRef={emailRef}
+            />
+            <InputField
+              label={"password"}
+              id={"password"}
+              name={"password"}
+              type={"password"}
+              error={errors.password!}
+              userRef={passwordRef}
+            />
+            <Captcha />
+            <div className="mt-8 flex flex-col gap-y-4">
+              <Button type={"submit"} isLink={false}>
+                {t("signup")}
+              </Button>
+            </div>
+          </form>
+          <div className="mt-4 gap-y-4">
+            <ThematicBreak isLogin={false} />
+          </div>
           <div className="mt-4 flex flex-col gap-y-4">
-            <Button type={"submit"} isLink={false}>
-              {t("signup")}
+            <Button type={"button"} isLink={false}>
+              <FaGoogle className="mr-2" />
+              Google
             </Button>
           </div>
-        </form>
-        <ThematicBreak isLogin={false} />
-        <Button type={"button"} isLink={false}>
-          <FaGoogle className="mr-2" />
-          Google
-        </Button>
-        <ConfirmAccount isLogin={false} />
-      </section>
+          <ConfirmAccount isLogin={false} />
+        </section>
+      </div>
     </>
   );
 };
