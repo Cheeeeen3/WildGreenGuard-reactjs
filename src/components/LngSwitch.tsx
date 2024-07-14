@@ -43,7 +43,7 @@ const LngSwitch: React.FC = () => {
         className="btn w-14 border-emerald-950 bg-emerald-950 hover:bg-emerald-900"
         onClick={handleClick}
       >
-        <GrLanguage size={42} className="text-gray-300" />
+        <GrLanguage size={42} className="pt-1 text-gray-300" />
       </summary>
       <div
         className={`menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow ${animation}`}
