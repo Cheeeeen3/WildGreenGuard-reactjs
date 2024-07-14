@@ -75,6 +75,7 @@
     "a2": "The uploaded plant photos should be taken in well-lit conditions, and the images must be clear. Uploading images from different angles would improve the success rate of recognition.",
     "q3": "4. How to reduce the overlap of bounding boxes in the results when using YOLO Image Identification?",
     "a3": "When using YOLO Image Identification, it is recommended to focus on scenes with a single plant feature, reducing the occurrence of bounding boxes for better identification.",
+    "HTCintro": "A woman who graduated from Fu Jen Catholic University with a degree in Japanese Language and Literature has thrown herself into the world of front-end development. During the development process, her eyes light up when she sees beautiful colors and designs. She is thrilled when the website's functionalities work correctly. She hopes to improve bit by bit, creating visually pleasing and smoothly functioning websites.",
     "ZJM": "ZHANG, JIA-MING",
     "ZYT": "ZHANG, YA-TING",
     "ZDQ": "ZHANG, DA-QIAN",
