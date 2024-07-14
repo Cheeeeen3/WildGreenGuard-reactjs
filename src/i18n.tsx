@@ -29,7 +29,7 @@ i18n
     detection: {
       order: ["htmlTag"],
       htmlTag: document.documentElement,
-    }
+    }, 
   });
 
 export default i18n;
