@@ -35,7 +35,6 @@ const Captcha: React.FC = () => {
   return (
     <>
       <div className="ml-20 w-64 sm:ml-8 sm:w-80">
-        <form>
           <div className="flex flex-col sm:flex-row sm:space-x-4">
             <LoadCanvasTemplate
               reloadText="🔄️"
@@ -47,7 +46,7 @@ const Captcha: React.FC = () => {
                 type="text"
                 id="captcha-value"
                 name="captcha-value"
-                className="w-40 rounded-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
+                className="w-40 px-2 rounded-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset"
                 required
               />
               <button
@@ -59,7 +58,6 @@ const Captcha: React.FC = () => {
               </button>
             </div>
           </div>
-        </form>
         <div className="mt-2 flex justify-start sm:justify-end">
           <p className={`text-left italic ${msgColor}`}>{ t(msg) }</p>
         </div>
