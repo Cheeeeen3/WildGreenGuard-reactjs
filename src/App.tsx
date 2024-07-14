@@ -12,6 +12,8 @@ import NavBar from "./components/NavBar.tsx";
 import React from "react";
 import Login from "./components/Login.tsx";
 import SignUp from "./components/SignUp.tsx";
+import Team from "./components/Team.tsx";
+import ErrorPage from "./ErrorPage.tsx";
 
 // FC type from React
 
@@ -19,6 +21,7 @@ const route = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -37,6 +40,10 @@ const route = createBrowserRouter([
       {
         path: "/SignUp",
         element: <SignUp />,
+      },
+      {
+        path: "/Team",
+        element: <Team />,
       },
     ],
   },
