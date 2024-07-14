@@ -51,7 +51,7 @@ const SignUp: React.FC = () => {
               name={"email"}
               type={"text"}
               error={errors.email!}
-              userRef={emailRef}
+              ref={emailRef}
             />
             <InputField
               label={"password"}
@@ -59,7 +59,7 @@ const SignUp: React.FC = () => {
               name={"password"}
               type={"password"}
               error={errors.password!}
-              userRef={passwordRef}
+              ref={passwordRef}
             />
             <Captcha />
             <div className="mt-8 flex flex-col gap-y-4">
