@@ -32,7 +32,11 @@ export default {
     },
   },
   plugins: [
-    daisyui,
+    daisyui
   ],
+  daisyui: {
+    themes: [{emerald:{...require("daisyui/src/theming/themes")["emerald"]}},{forest:{...require("daisyui/src/theming/themes")["forest"],"--rounded-btn": "0.75rem","--rounded-box": "0.75rem"}}]
+  },
+  darkMode: ['class', '[data-theme="forest"]']
 }
 
