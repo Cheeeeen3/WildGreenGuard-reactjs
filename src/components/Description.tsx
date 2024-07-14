@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "./Image.tsx";
 import { useTranslation } from "react-i18next";
 
 interface props {
@@ -9,28 +8,26 @@ interface props {
   info: string;
 }
 
-const Description: React.FC<props> = ({
-  plant,
-  imageUrl,
-  scientificName,
-  info,
-}) => {
+const Description: React.FC<props> = ({ plant, imageUrl, scientificName }) => {
   const { t } = useTranslation();
   return (
-    <li id={plant} className="flex flex-col sm:flex-row border-4 border-cyan-700">
-      <Image
-        imageUrl={imageUrl}
-        plant={plant}
-        className="w-60 h-60 rounded-md ml-4 mx-3"
-      />
-      <article className="ml-4">
-        <h3 className="font-semibold hover:text-orange-400 hover:opacity-80">
-          {t(plant)}
-        </h3>
-        <h6 className="italic mb-2">{scientificName}</h6>
+    <div
+      className="card mb-6 flex flex-col items-center bg-base-100 shadow-xl sm:flex-row"
+      id={plant}
+    >
+      <figure className="w-full flex-shrink-0 sm:w-64">
+        <img
+          src={imageUrl}
+          alt={plant}
+          className="mt-8 size-64 rounded-md object-cover sm:mt-0 sm:h-full"
+        />
+      </figure>
+      <div className="card-body">
+        <h2 className="card-title whitespace-nowrap">{t(plant)}</h2>
+        <h6 className="mb-2 whitespace-nowrap italic">{scientificName}</h6>
         <p>{t(`${plant}des`)}</p>
-      </article>
-    </li>
+      </div>
+    </div>
   );
 };
 
