@@ -2,10 +2,9 @@ import React from "react";
 import LogoIcon from "./LogoIcon.tsx";
 
 export interface LoginProps {
-    isLogin:boolean
+  isLogin: boolean;
 }
-const LogoWithTile: React.FC<LoginProps> = ( { isLogin }) => {
-    
+const LogoWithTile: React.FC<LoginProps> = ({ isLogin }) => {
   return (
     <div className="sm:mx-auto sm:w-full sm:max-w-sm">
       <LogoIcon width={96} height={96} />

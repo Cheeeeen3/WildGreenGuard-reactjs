@@ -11,6 +11,7 @@ import NavBar from "./components/NavBar.tsx";
 import React from "react";
 import Login from "./components/Login.tsx";
 import SignUp from "./components/SignUp.tsx";
+import Chatroom from "./components/Chatroom.tsx";
 // FC type from React
 
 const route = createBrowserRouter([
@@ -36,6 +37,10 @@ const route = createBrowserRouter([
         path: "/SignUp",
         element: <SignUp />,
       },
+      {
+        path: "/Chatroom",
+        element: <Chatroom />,
+      },
     ],
   },
 ]);
@@ -52,10 +57,10 @@ function Layout() {
   return (
     <>
       <NavBar />
-      <main><Outlet /></main>
+      <main className="min-h-dvh"><Outlet /></main>
       <Footer />
     </>
   );
 }
 
-export default App;
+export default App

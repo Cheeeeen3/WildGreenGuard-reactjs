@@ -21,8 +21,8 @@ const Button: React.FC<buttonProps> = ({ type, isLink, children }) => {
         type === "button"
           ? googleButtonStyle
           : isLink
-          ? linkButtonStyle
-          : primaryButtonStyle
+            ? linkButtonStyle
+            : primaryButtonStyle
       }
     >
       {children}
