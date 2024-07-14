@@ -4,7 +4,6 @@ import { FaGoogle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import SignUp from "./SignUp.tsx";
 import Validation, { props as props } from "./Validation.ts";
 import LogoWithTitle from "./LogoWithTitle.tsx";
 import InputField from "./InputField.tsx";
