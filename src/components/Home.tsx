@@ -15,14 +15,14 @@ const Home: React.FC = () => {
         </div>
         <div>
           <img
-            className="flex flex-col rounded-2xl object-contain h-200 w-200"
+            className="h-200 w-200 flex flex-col rounded-2xl object-contain"
             src="https://cdn.britannica.com/70/234870-050-D4D024BB/Orange-colored-cat-yawns-displaying-teeth.jpg"
             alt="Orange-cat-yawn"
           />
         </div>
         <div>
           <img
-            className="flex flex-col rounded-2xl object-contain h-200 w-200"
+            className="h-200 w-200 flex flex-col rounded-2xl object-contain"
             src="https://cdn.britannica.com/70/234870-050-D4D024BB/Orange-colored-cat-yawns-displaying-teeth.jpg"
             alt="Orange-cat-yawn"
           />

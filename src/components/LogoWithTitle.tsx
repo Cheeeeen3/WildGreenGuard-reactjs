@@ -3,7 +3,7 @@ import LogoIcon from "./LogoIcon.tsx";
 import { useTranslation } from "react-i18next";
 
 export interface LoginProps {
-    isLogin:boolean
+  isLogin: boolean;
 }
 const LogoWithTile: React.FC<LoginProps> = ( { isLogin }) => {
   const { t } = useTranslation();  
