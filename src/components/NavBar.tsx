@@ -3,29 +3,29 @@ import { Link } from "react-router-dom";
 
 import { useTranslation } from "react-i18next";
 
-import logo from "../assets/HomePage_WGG/earth_nature_futaba.png";
-import LngSwitch from "./LngSwitch.tsx";
-import ThemeController from "./ThemeController.tsx";
+// import logo from "../assets/HomePage_WGG/earth_nature_futaba.png";
+// import LngSwitch from "./LngSwitch.tsx";
+// import ThemeController from "./ThemeController.tsx";
 
 const NavBar: React.FC = () => {
-  const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(false);
+  // const { t } = useTranslation();
+  // const [isOpen, setIsOpen] = useState(false);
   const [page, setPage] = useState("");
-  const [isLogin, setIsLogin] = useState(false);
+  // const [isLogin, setIsLogin] = useState(false);
 
   const handlePageClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const target = e.target as HTMLAnchorElement;
     setPage(target.pathname);
   };
-  const handleMenuClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    let menuBtn = document.getElementById("menu-btn");
-    menuBtn?.setAttribute(
-      "aria-expanded",
-      (menuBtn.ariaExpanded !== "true").toString(),
-    );
-    setIsOpen(!isOpen);
-  };
+  // const handleMenuClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   e.preventDefault();
+  //   let menuBtn = document.getElementById("menu-btn");
+  //   menuBtn?.setAttribute(
+  //     "aria-expanded",
+  //     (menuBtn.ariaExpanded !== "true").toString(),
+  //   );
+  //   setIsOpen(!isOpen);
+  // };
 
   return (
     <header>
