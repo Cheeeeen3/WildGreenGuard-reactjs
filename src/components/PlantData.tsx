@@ -104,6 +104,7 @@ const plantData = [
 async function getPlantData() {
   try {
     // const response = await axios.get("https://0268-2001-b400-e35d-c280-a9f7-5438-8d07-77ca.ngrok-free.app/plants/info/data", {headers: {'ngrok-skip-browser-warning': 'any'}});
+    // const response = await axios.get("host:port/plant/database", {headers: {'ngrok-skip-browser-warning': 'any'}});
     // return response.data;
     return plantData;
   } catch (error) {
