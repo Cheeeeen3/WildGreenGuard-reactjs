@@ -35,7 +35,7 @@ const Info: React.FC = () => {
 
   return (
     <>
-      <div className="mx-4 mt-4 sm:mx-12">
+      <div className="relative z-10 mx-4 mt-4 sm:mx-12">
         <Tabs display={toggle} handler={handleToggle} />
         <ul className={toggle === 1 ? shortcutStyle : "hidden"}>
           {InvasiveDatas.map((InvasiveData) => (
