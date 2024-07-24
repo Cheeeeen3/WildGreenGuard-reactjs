@@ -11,7 +11,7 @@ interface Record {
 const Records: React.FC = () => {
   const placeholder: Record = {
     plantName: "Flossflower",
-    saveUrl: "https://storage.googleapis.com/green01/plant/Flossflower.jpg",
+    saveUrl: "/src/assets/Plants/Flossflower.jpg",
     saveTime: new Date(),
   };
   const [records, setRecords] = useState<Array<Record>>([placeholder]);
@@ -35,7 +35,7 @@ const Records: React.FC = () => {
       <button className="rounded-md bg-gray-200 hover:outline-blue-500 hover:ring-2 hover:ring-offset-1">
         <div className="flex items-center">
           <img
-            src="https://storage.googleapis.com/green01/plant/Flossflower.jpg"
+            src="/src/assets/Plants/Flossflower.jpg"
             alt="Flossflower"
             className="size-8 rounded-full"
           />
