@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { MdOutlineDarkMode } from "react-icons/md";
-import { MdOutlineLightMode } from "react-icons/md";
+import React, { useEffect } from "react";
+import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 
-const ThemeController: React.FC = () => {
-  const [theme, setTheme] = useState("emerald");
-  const toggleTheme = () => {
-    setTheme(theme === "forest" ? "emerald" : "forest");
-  };
+interface ThemeProps {
+  theme: string;
+  toggleTheme: (newTheme: string) => void;
+}
+
+
+const ThemeController: React.FC<ThemeProps> = ( { theme, toggleTheme}) => {
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -20,16 +21,17 @@ const ThemeController: React.FC = () => {
     >
       {/* this hidden checkbox controls the state */}
       <input
-        onClick={toggleTheme}
+        onClick={() => toggleTheme(theme === "forest" ? "emerald" : "forest")}
         type="checkbox"
+        checked={theme === "forest"}
         className="theme-controller"
       />
 
       {/* sun icon */}
-      <MdOutlineLightMode className="swap-off size-8 fill-current text-gray-300" />
+      <MdOutlineLightMode className="swap-off size-8 py-0.5 fill-current text-gray-300" />
 
       {/* moon icon */}
-      <MdOutlineDarkMode className="swap-on size-8 fill-current text-gray-300" />
+      <MdOutlineDarkMode className="swap-on size-8 py-0.5 fill-current text-gray-300" />
     </label>
   );
 };

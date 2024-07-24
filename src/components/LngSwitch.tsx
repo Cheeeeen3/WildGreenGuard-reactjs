@@ -6,16 +6,45 @@ import { GrLanguage } from "react-icons/gr";
 
 const LngSwitch: React.FC = () => {
   const [animation, setAnimation] = useState("animate-close-menu hidden");
+  const [isOpen, setIsOpen] = useState(false);
   const detailsRef = useRef<HTMLDetailsElement>(null);
 
   const handleClick = () => {
-    let newAnimation =
-      animation === "animate-open-menu"
-        ? "animate-close-menu hidden"
-        : "animate-open-menu";
-    setAnimation(newAnimation);
+    setIsOpen(!isOpen);
+    setAnimation(isOpen ? "animate-close-menu hidden" : "animate-open-menu");
   };
 
+  return (
+    <details ref={detailsRef} className="dropdown dropdown-end">
+      <summary className="btn btn-ghost" onClick={handleClick}>
+        <GrLanguage size={28} className="pb-0.5 text-gray-300" />
+      </summary>
+      <div
+        className={`menu dropdown-content relative z-20 w-52 rounded-box bg-base-100 p-2 shadow ${animation}`}
+      >
+        <LngDropDown
+          setAnimation={setAnimation}
+          setIsOpen={setIsOpen}
+          detailsRef={detailsRef}
+        />
+      </div>
+    </details>
+  );
+};
+
+export default LngSwitch;
+
+interface lngProps {
+  setAnimation: React.Dispatch<React.SetStateAction<string>>;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  detailsRef: React.RefObject<HTMLDetailsElement>;
+}
+
+export const LngDropDown: React.FC<lngProps> = ({
+  setAnimation,
+  setIsOpen,
+  detailsRef,
+}) => {
   const handleLanguageClick = (
     e: React.MouseEvent<HTMLDivElement>,
     lang: string,
@@ -32,43 +61,31 @@ const LngSwitch: React.FC = () => {
     i18next.changeLanguage(lang);
     // console.log(lang, i18next.resolvedLanguage, i18next.language);
     setAnimation("animate-close-menu hidden");
+    setIsOpen(false);
     if (detailsRef.current) {
       detailsRef.current.open = false;
     }
   };
-
   return (
-    <details ref={detailsRef} className="dropdown dropdown-end">
-      <summary
-        className="btn w-14 border-emerald-950 bg-emerald-950 hover:bg-emerald-900"
-        onClick={handleClick}
-      >
-        <GrLanguage size={42} className="pt-1 text-gray-300" />
-      </summary>
-      <div
-        className={`menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow ${animation}`}
-      >
-        {languages.map((language) => (
-          <div
-            key={language.code}
-            onClick={(e) => handleLanguageClick(e, language.code)}
-            className="mt-2 flex cursor-pointer flex-row"
+    <div>
+      {languages.map((language) => (
+        <div
+          key={language.code}
+          onClick={(e) => handleLanguageClick(e, language.code)}
+          className="mt-2 flex cursor-pointer flex-row rounded-md px-2 py-2 hover:bg-emerald-900 hover:text-white aria-[current='language']:block aria-[current='language']:bg-emerald-800 aria-[current='language']:text-white aria-[current='language']:hover:bg-emerald-900"
+        >
+          {language.country_code}
+          <a
+            href="#"
+            className="ml-2 block px-4 py-1 text-base"
+            role="menuitem"
+            tabIndex={-1}
+            id={language.code}
           >
-            {language.country_code}
-            <a
-              href="#"
-              className="ml-2 block px-4 py-2 text-sm text-gray-700 dark:text-gray-300"
-              role="menuitem"
-              tabIndex={-1}
-              id={language.code}
-            >
-              {language.name}
-            </a>
-          </div>
-        ))}
-      </div>
-    </details>
+            {language.name}
+          </a>
+        </div>
+      ))}
+    </div>
   );
 };
-
-export default LngSwitch;

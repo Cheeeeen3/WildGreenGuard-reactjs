@@ -1,70 +1,80 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { useTranslation } from "react-i18next";
+import {
+  MdOutlineLogin,
+  MdOutlineDarkMode,
+  MdOutlineLightMode,
+} from "react-icons/md";
+import { HiOutlineMenuAlt1 } from "react-icons/hi";
 
-// import logo from "../assets/HomePage_WGG/earth_nature_futaba.png";
-// import LngSwitch from "./LngSwitch.tsx";
-// import ThemeController from "./ThemeController.tsx";
+import LngSwitch from "./LngSwitch.tsx";
+import ThemeController from "./ThemeController.tsx";
+import LogoIcon from "./LogoIcon.tsx";
+import { LngDropDown } from "./LngSwitch.tsx";
 
 const NavBar: React.FC = () => {
-  // const { t } = useTranslation();
-  // const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
+  const [animation, setAnimation] = useState("animate-close-menu hidden");
   const [page, setPage] = useState("");
-  // const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const detailsRef = useRef<HTMLDetailsElement>(null);
 
   const handlePageClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const target = e.target as HTMLAnchorElement;
     setPage(target.pathname);
   };
-  const handleMenuClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    let menuBtn = document.getElementById("menu-btn");
-    menuBtn?.setAttribute(
-      "aria-expanded",
-      (menuBtn.ariaExpanded !== "true").toString(),
-    );
-    setIsOpen(!isOpen);
+
+  const [theme, setTheme] = useState("emerald");
+  const toggleTheme = (newTheme:string) => {
+    // setTheme(theme === "forest" ? "emerald" : "forest");
+    setTheme(newTheme);
   };
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
   return (
     <header>
-      <div className="navbar bg-base-100">
-        <div className="navbar-start z-10">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
-            >
+      <div className="navbar mx-auto bg-emerald-950 relative z-20">
+        <div className="navbar-start">
+          <details className="dropdown">
+            <summary className="btn btn-ghost m-1">
+              <HiOutlineMenuAlt1 className="text-2xl text-gray-300" />
+            </summary>
+            <ul className="menu dropdown-content menu-sm relative z-30 mt-3 w-52 rounded-box bg-base-100 p-2 shadow">
               <NavLinkPanel page={page} handlePageClick={handlePageClick} />
-              <a className="btn btn-sm [@media(min-width:400px)]:hidden">Lang Switch</a>
+              <li>
+                <details open>
+                  <summary>{t("language")}</summary>
+                  <LngDropDown
+                    setAnimation={setAnimation}
+                    setIsOpen={setIsOpen}
+                    detailsRef={detailsRef}
+                  />
+                </details>
+              </li>
+              <li>
+                <label className="flex cursor-pointer gap-2">
+                  <MdOutlineLightMode className="size-8 fill-current py-0.5" />
+                  <input
+                    onClick={() => toggleTheme(theme === "forest" ? "emerald" : "forest")}
+                    type="checkbox"
+                    checked={theme === "forest"}
+                    className="theme-controller toggle"
+                  />
+                  <MdOutlineDarkMode className="size-8 fill-current py-0.5" />
+                </label>
+              </li>
             </ul>
-          </div>
+          </details>
           <Link to="/" onClick={handlePageClick}>
             <div className="btn btn-ghost flex flex-row flex-nowrap items-center">
-              <img
-                src="https://taiwan.wwg.solutions/static/plants/images/earth_nature_futaba.png"
-                alt="icon"
-                width={34}
-                height={34}
-              />
-              <strong className="inline-block py-1.5 align-middle text-success-content">
+              <LogoIcon width={34} height={34} />
+              <strong className="inline-block py-1.5 align-middle text-gray-300">
                 WildGreenGuard
               </strong>
             </div>
@@ -75,9 +85,18 @@ const NavBar: React.FC = () => {
             </ul>
           </div>
         </div>
-        <div className="navbar-end z-0 flex space-x-4">
-          <a className="hidden [@media(min-width:400px)]:btn">Lang Switch</a>
-          <ProfileDropdown />
+        <div className="navbar-end z-0 mr-4 space-x-2">
+          <div className="hidden min-[400px]:block">
+            <LngSwitch />
+            <ThemeController theme={theme} toggleTheme={toggleTheme}/>
+          </div>
+          {isLogin ? (
+            <ProfileDropdown />
+          ) : (
+            <Link to="/Login">
+              <MdOutlineLogin className="size-8 pb-1 text-gray-300" />
+            </Link>
+          )}
         </div>
       </div>
     </header>
@@ -119,28 +138,21 @@ interface pageProps {
 
 const PageLink: React.FC<pageProps> = ({ to, navName, ...props }) => {
   const { t } = useTranslation();
+
   return (
-    <Link
-      to={to}
-      className="rounded-md px-3 py-2 font-custom-font text-sm font-medium text-gray-300 hover:bg-emerald-900 hover:text-white aria-[current='page']:block aria-[current='page']:bg-emerald-800 aria-[current='page']:text-white aria-[current='page']:hover:bg-emerald-900"
-      {...props}
-    >
-      {t(navName)}
-    </Link>
+    <li>
+      <Link
+        to={to}
+        className="rounded-md px-2 py-2 font-custom-font text-base font-medium text-gray-300 hover:bg-emerald-900 hover:text-white aria-[current='page']:block aria-[current='page']:bg-emerald-800 aria-[current='page']:text-white aria-[current='page']:hover:bg-emerald-900"
+        {...props}
+      >
+        {t(navName)}
+      </Link>
+    </li>
   );
 };
 
 const ProfileDropdown: React.FC = () => {
-  const [animation, setAnimation] = useState("animate-close-menu hidden");
-
-  const handleClick = () => {
-    let newAnimation =
-      animation === "animate-open-menu"
-        ? "animate-close-menu hidden"
-        : "animate-open-menu";
-    setAnimation(newAnimation);
-  };
-
   return (
     <div className="dropdown dropdown-end dropdown-hover">
       <div className="avatar">
