@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { Suspense } from "react";
 
 import "./App.css";
+import './index.css';
 import Footer from "./components/Footer.tsx";
 import Home from "./components/Home.tsx";
 import Info from "./components/Info.tsx";
