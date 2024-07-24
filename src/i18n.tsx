@@ -4,7 +4,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import HttpBackend, { HttpBackendOptions } from "i18next-http-backend";
 import { US, JP, TW } from 'country-flag-icons/react/3x2'
 
-const flagStyle = "w-8 h-8 ml-6";
+const flagStyle = "size-8 ml-6";
 
 export const languages = [
   { code: "en", name: "English(US)", country_code: <US className={flagStyle} />},
