@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 import { useTranslation } from "react-i18next";
 import {
@@ -13,6 +13,7 @@ import LngSwitch from "./LngSwitch.tsx";
 import ThemeController from "./ThemeController.tsx";
 import LogoIcon from "./LogoIcon.tsx";
 import { LngDropDown } from "./LngSwitch.tsx";
+import getUserInfo from "./UserInfo.tsx";
 
 const NavBar: React.FC = () => {
   const { t } = useTranslation();
@@ -61,9 +62,9 @@ const NavBar: React.FC = () => {
                 <label className="flex cursor-pointer gap-2">
                   <MdOutlineLightMode className="size-8 fill-current py-0.5" />
                   <input
-                    onClick={() => toggleTheme(theme === "forest" ? "emerald" : "forest")}
                     type="checkbox"
                     checked={theme === "forest"}
+                    onChange={() => {toggleTheme(theme === "forest" ? "emerald" : "forest")}}
                     className="theme-controller toggle"
                   />
                   <MdOutlineDarkMode className="size-8 fill-current py-0.5" />
@@ -152,7 +153,18 @@ const PageLink: React.FC<pageProps> = ({ to, navName, ...props }) => {
   );
 };
 
+interface userInfo {
+  user: string,
+  email: string
+}
+
+export const userLoader = async () => {
+  const UserInfos = await getUserInfo();
+  return UserInfos;
+}
+
 const ProfileDropdown: React.FC = () => {
+  const UserInfo = useLoaderData() as userInfo;
   return (
     <div className="dropdown dropdown-end dropdown-hover">
       <div className="avatar">
@@ -168,7 +180,10 @@ const ProfileDropdown: React.FC = () => {
         className="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow"
       >
         <li>
-          <a>User Name</a>
+          <a>{UserInfo.user}</a>
+        </li>
+        <li>
+          <a>{UserInfo.email}</a>
         </li>
         <li>
           <a>Sign Out</a>
