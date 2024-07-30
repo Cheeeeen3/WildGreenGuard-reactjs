@@ -6,9 +6,7 @@ interface ThemeProps {
   toggleTheme: (newTheme: string) => void;
 }
 
-
-const ThemeController: React.FC<ThemeProps> = ( { theme, toggleTheme}) => {
-
+const ThemeController: React.FC<ThemeProps> = ({ theme, toggleTheme }) => {
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
@@ -21,17 +19,19 @@ const ThemeController: React.FC<ThemeProps> = ( { theme, toggleTheme}) => {
     >
       {/* this hidden checkbox controls the state */}
       <input
-        onClick={() => toggleTheme(theme === "forest" ? "emerald" : "forest")}
         type="checkbox"
         checked={theme === "forest"}
+        onChange={() => {
+          toggleTheme(theme === "forest" ? "emerald" : "forest");
+        }}
         className="theme-controller"
       />
 
       {/* sun icon */}
-      <MdOutlineLightMode className="swap-off size-8 py-0.5 fill-current text-gray-300" />
+      <MdOutlineLightMode className="swap-off size-8 fill-current py-0.5 text-gray-300" />
 
       {/* moon icon */}
-      <MdOutlineDarkMode className="swap-on size-8 py-0.5 fill-current text-gray-300" />
+      <MdOutlineDarkMode className="swap-on size-8 fill-current py-0.5 text-gray-300" />
     </label>
   );
 };
