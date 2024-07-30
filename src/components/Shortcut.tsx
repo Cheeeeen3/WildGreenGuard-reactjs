@@ -16,7 +16,7 @@ const Shortcut: React.FC<Props> = ({ plant, imageUrl }) => {
         <Image
           imageUrl={imageUrl}
           plant={plant}
-          className="size-12 rounded-full border-2 border-gray-400 group-hover:border-emerald-600"
+          className="sm:min-w-12 sm:min-h-12 sm:max-w-12 sm:max-h-12 rounded-full border-2 border-gray-400 group-hover:border-emerald-600"
         />
         <p className="ml-4 whitespace-nowrap text-base">{t(plant)}</p>
       </a>
